@@ -10,12 +10,6 @@ machine_type=$(gcc -dumpmachine)
 cp -a $DEPS/gcc .
 cd gcc
 
-#patch -Np0 -i ${PATCHDIR}/gcc/gcc-nofixincludes
-#patch -Np0 -i ${PATCHDIR}/gcc/gcc-libiberty
-#patch -Np1 -i ${PATCHDIR}/gcc/gcc473-dliterate-configure-var.patch
-#patch -Np1 -i ${PATCHDIR}/gcc/gcc482-unwind-dliterate.patch
-#patch -Np1 -i ${PATCHDIR}/gcc/gcc482-libssp-link.patch
-
 patch -Np0 -i ${PATCHDIR}/gcc/gcc490-nofixincludes.patch
 patch -Np0 -i ${PATCHDIR}/gcc/gcc-libiberty
 patch -Np1 -i ${PATCHDIR}/gcc/gcc490-dliterate-configure-var.patch
