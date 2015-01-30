@@ -40,8 +40,8 @@ do
 done
 
 # Clean/remove built environment
-docker rmi $username/muslbase-build-base || true
-docker rmi $username/muslbase-build || true
+####docker rmi $username/muslbase-build-base || true
+####docker rmi $username/muslbase-build || true
 
 # Create Dockerfile
 sed "s|@@USERNAME|$username|" < Dockerfile.in > Dockerfile
@@ -64,7 +64,8 @@ do
   docker rmi $username/muslbase-static-runtime || true
 
   # Build muslbase rootfs
-  docker build --rm -t=$username/muslbase-build .
+  ####docker build --rm -t=$username/muslbase-build .
+  docker build -t=$username/muslbase-build .
 
   # Build docker image: muslbase
   docker run --rm $username/muslbase-build cat /rootfs.tar > rootfs/full/rootfs.tar
