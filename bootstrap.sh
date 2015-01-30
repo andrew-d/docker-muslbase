@@ -40,8 +40,11 @@ do
 done
 
 # Clean/remove built environment
-docker rmi mwcampbell/muslbase-build-base || true
+docker rmi $username/muslbase-build-base || true
 docker rmi $username/muslbase-build || true
+
+# Create Dockerfile
+sed "s|@@USERNAME|$username|" < Dockerfile.in > Dockerfile
 
 # Build, first using glibc from debian, then musl from selfhost build environment
 for buildbase in debian selfhost selfhost
@@ -49,10 +52,10 @@ do
   if [ "$buildbase" = "selfhost" ]
   then
     # If we're self-hosting, use muslbase as the build environment
-    docker tag $username/muslbase mwcampbell/muslbase-build-base
+    docker tag $username/muslbase $username/muslbase-build-base
   else
     # Otherwise, build and use the initial Debian base build environment
-    docker build --rm -t=mwcampbell/muslbase-build-base buildbase/$buildbase
+    docker build --rm -t=$username/muslbase-build-base buildbase/$buildbase
   fi
 
   # Remove earlier muslbase images
@@ -79,6 +82,6 @@ do
   rm rootfs/static-runtime/rootfs.tar
 
   # Clean/remove build environment
-  docker rmi mwcampbell/muslbase-build-base
+  docker rmi $username/muslbase-build-base
   docker rmi $username/muslbase-build
 done

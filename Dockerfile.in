@@ -1,4 +1,4 @@
-FROM mwcampbell/muslbase-build-base
+FROM @@USERNAME/muslbase-build-base
 MAINTAINER Matt Campbell <mattcampbell@pobox.com>
 
 ENV ROOT /buildroot

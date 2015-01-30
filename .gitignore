@@ -1,2 +1,5 @@
 /rootfs/full/rootfs.tar
 /rootfs/runtime/rootfs.tar
+
+# This is generated
+Dockerfile
