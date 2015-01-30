@@ -3,8 +3,11 @@
 
 # Setup
 set -e
+
 umask 022
+
 jobs=-j8
+
 export LC_ALL=POSIX
 export SRC=$ROOT/src
 export DEPS=$SRC/deps
